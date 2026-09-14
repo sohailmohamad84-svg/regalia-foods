@@ -50,14 +50,24 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
         <div>
           {/* Top Bar */}
           <div className="flex items-center justify-between pb-6 border-b border-warm-300">
-            <Link href="/" onClick={onClose} className="relative block h-10 w-44">
-              <Image
-                src={siteConfig.brand.logoPrimary}
-                alt={siteConfig.legalName}
-                fill
-                className="object-contain object-left"
-                priority
-              />
+            <Link href="/" onClick={onClose} className="flex items-center gap-2.5">
+              <div className="relative h-10 w-14 shrink-0">
+                <Image
+                  src={siteConfig.brand.logoPrimary}
+                  alt={siteConfig.legalName}
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-serif font-bold text-base tracking-tight text-navy-950 leading-none">
+                  REGALIA FOODS
+                </span>
+                <span className="text-[9px] tracking-[0.2em] font-semibold text-gold-600 uppercase mt-0.5">
+                  LLP &bull; Manufacturing
+                </span>
+              </div>
             </Link>
             <button
               onClick={onClose}

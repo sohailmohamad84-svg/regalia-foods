@@ -15,13 +15,23 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-b border-navy-800/80">
           {/* Brand Column (5 cols on lg) */}
           <div className="lg:col-span-4 space-y-5">
-            <Link href="/" className="relative block h-11 w-52 bg-white/95 p-1 rounded-xs px-2.5">
-              <Image
-                src={siteConfig.brand.logoPrimary}
-                alt={siteConfig.legalName}
-                fill
-                className="object-contain object-left"
-              />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative h-12 w-16 shrink-0">
+                <Image
+                  src={siteConfig.brand.logoPrimary}
+                  alt={siteConfig.legalName}
+                  fill
+                  className="object-contain object-left drop-shadow-sm"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-serif font-bold text-lg tracking-tight text-warm-50 leading-none group-hover:text-gold-300 transition-colors">
+                  REGALIA FOODS
+                </span>
+                <span className="text-[10px] tracking-[0.2em] font-semibold text-gold-400 uppercase mt-1">
+                  LLP &bull; Manufacturing
+                </span>
+              </div>
             </Link>
 
             <p className="text-sm text-warm-200/80 leading-relaxed max-w-sm">

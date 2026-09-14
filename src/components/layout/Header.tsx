@@ -47,18 +47,33 @@ export const Header: React.FC = () => {
             {/* Logo */}
             <Link
               href="/"
-              className="relative block h-10 sm:h-12 w-48 sm:w-56 transition-transform hover:opacity-95"
+              className="flex items-center gap-3 transition-transform hover:opacity-95 group"
               aria-label={`${siteConfig.name} - Home`}
             >
-              {/* If at the top of hero on homepage with dark overlay, we can use the clean logo */}
-              <div className="relative w-full h-full p-1 rounded-sm bg-white/90 backdrop-blur-xs px-2 shadow-xs flex items-center">
+              <div className="relative h-11 sm:h-12 w-16 sm:w-20 shrink-0">
                 <Image
                   src={siteConfig.brand.logoPrimary}
                   alt={siteConfig.legalName}
                   fill
-                  className="object-contain object-left"
+                  className="object-contain object-left drop-shadow-xs"
                   priority
                 />
+              </div>
+              <div className="flex flex-col">
+                <span
+                  className={`font-serif font-bold text-base sm:text-lg tracking-tight leading-none transition-colors ${
+                    !isScrolled && isHomePage ? "text-warm-50" : "text-navy-950"
+                  }`}
+                >
+                  REGALIA FOODS
+                </span>
+                <span
+                  className={`text-[9px] sm:text-[10px] tracking-[0.2em] font-semibold uppercase mt-0.5 transition-colors ${
+                    !isScrolled && isHomePage ? "text-gold-300" : "text-gold-600"
+                  }`}
+                >
+                  LLP &bull; Manufacturing
+                </span>
               </div>
             </Link>
 
