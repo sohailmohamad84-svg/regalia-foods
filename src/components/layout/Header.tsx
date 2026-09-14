@@ -17,6 +17,14 @@ export const Header: React.FC = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
+  const handleOpenMobileNav = React.useCallback(() => {
+    setMobileNavOpen(true);
+  }, []);
+
+  const handleCloseMobileNav = React.useCallback(() => {
+    setMobileNavOpen(false);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -130,13 +138,14 @@ export const Header: React.FC = () => {
               </Button>
               <button
                 type="button"
-                onClick={() => setMobileNavOpen(true)}
-                className={`p-2 rounded-sm transition-colors ${
+                onClick={handleOpenMobileNav}
+                className={`min-h-[42px] min-w-[42px] flex items-center justify-center rounded-sm transition-colors touch-manipulation cursor-pointer ${
                   !isScrolled && isHomePage
-                    ? "text-warm-100 hover:text-white bg-navy-900/40"
-                    : "text-charcoal-800 hover:text-navy-900 hover:bg-warm-200"
+                    ? "text-warm-100 hover:text-white bg-navy-900/40 active:bg-navy-900/60"
+                    : "text-charcoal-800 hover:text-navy-900 hover:bg-warm-200 active:bg-warm-300"
                 }`}
                 aria-label="Open Navigation Menu"
+                aria-expanded={mobileNavOpen}
               >
                 <Menu className="w-6 h-6" />
               </button>
@@ -148,7 +157,7 @@ export const Header: React.FC = () => {
       {/* Mobile Drawer */}
       <MobileNav
         isOpen={mobileNavOpen}
-        onClose={() => setMobileNavOpen(false)}
+        onClose={handleCloseMobileNav}
       />
     </>
   );
