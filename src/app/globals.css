@@ -43,6 +43,12 @@
   background: #9EACD4;
 }
 
+/* Disable native browser password reveal icons that collide with custom UI */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
 /* Accessibility: Respect Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
