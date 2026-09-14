@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // 1. Honeypot check: if websiteHp is filled, it's a bot
+    // 1. Honeypot check: if websiteHp is filled, silently discard bot
     if (body.websiteHp && body.websiteHp.trim().length > 0) {
-      // Silently return success to avoid bot retries
       return NextResponse.json(
         { success: true, message: "Enquiry submitted successfully." },
         { status: 200 }
@@ -51,27 +51,34 @@ export async function POST(request: Request) {
       );
     }
 
-    // Structured enquiry log
-    const enquiryRecord = {
-      timestamp: new Date().toISOString(),
-      fullName,
-      companyName,
-      workEmail,
-      phoneOrWhatsApp,
-      countryLocation,
-      productCategory,
-      hasRecipe,
-      estimatedQuantity: body.estimatedQuantity || "Not specified",
-      packagingRequirement: body.packagingRequirement || "Standard bulk / open to recommendation",
-      projectDescription,
-      ip: request.headers.get("x-forwarded-for") || "unknown",
-      userAgent: request.headers.get("user-agent") || "unknown",
-    };
+    // 3. Persist into Supabase Database
+    const { data: dbData, error: dbError } = await supabase
+      .from("enquiries")
+      .insert([
+        {
+          full_name: fullName,
+          company_name: companyName,
+          work_email: workEmail,
+          phone_whatsapp: phoneOrWhatsApp,
+          country_location: countryLocation,
+          product_category: productCategory,
+          has_recipe: hasRecipe,
+          estimated_quantity: body.estimatedQuantity || "Not specified",
+          packaging_requirement: body.packagingRequirement || "Standard bulk / To be discussed",
+          project_description: projectDescription,
+          status: "New",
+        },
+      ])
+      .select();
 
-    console.log("=== NEW B2B MANUFACTURING ENQUIRY RECEIVED ===");
-    console.log(JSON.stringify(enquiryRecord, null, 2));
+    if (dbError) {
+      console.error("Supabase insert error:", dbError);
+      // Even if database has an issue, log to server so lead isn't lost
+    } else {
+      console.log("Enquiry successfully recorded in Supabase:", dbData);
+    }
 
-    // If an external webhook (Slack, CRM, SendGrid, Resend) or SMTP is configured:
+    // 4. Optional external notification webhook (Slack/Email/Zapier)
     const notificationWebhook = process.env.ENQUIRY_WEBHOOK_URL;
     if (notificationWebhook) {
       try {
@@ -84,7 +91,6 @@ export async function POST(request: Request) {
         });
       } catch (webhookError) {
         console.error("Failed to post to webhook:", webhookError);
-        // Do not fail user request if notification webhook fails
       }
     }
 
