@@ -1,0 +1,122 @@
+import { ApplicationItem } from "@/types";
+import { siteImages } from "./images";
+
+export const applicationsData: ApplicationItem[] = [
+  {
+    id: "biryani-masala",
+    title: "Biryani Masala",
+    category: "Traditional Masala",
+    flavorProfile: "Rich aromatic bouquet with whole crushed cardamom, mace, cinnamon, and star anise notes.",
+    idealFor: ["Dum Biryani Chains", "Commercial Caterers", "Food Brands", "Cloud Kitchens"],
+    image: siteImages.applications.biryani,
+    specs: {
+      texture: "Coarse to medium crushed dry blend",
+      heatLevel: "Medium",
+      applicationMethod: "Simmered during meat marination or layered rice preparation",
+    },
+  },
+  {
+    id: "nihari-masala",
+    title: "Nihari Masala",
+    category: "Traditional Masala",
+    flavorProfile: "Deep earthy spices, warming fennel, ginger, long pepper (pippali), and nutmeg undertones.",
+    idealFor: ["Heritage Restaurants", "QSR Curries", "Packaged Food Brands", "Institutional Kitchens"],
+    image: siteImages.applications.nihari,
+    specs: {
+      texture: "Fine to medium aromatic powder",
+      heatLevel: "High",
+      applicationMethod: "Slow braising and rich stew sauce development",
+    },
+  },
+  {
+    id: "pav-bhaji-masala",
+    title: "Pav Bhaji Masala",
+    category: "Traditional Masala",
+    flavorProfile: "Robust tangy-savory profile with balanced coriander, dried mango, cumin, and red chili.",
+    idealFor: ["Fast Casual Food Chains", "Street Food Franchises", "Snack Brands", "Retail Brands"],
+    image: siteImages.applications.pavBhaji,
+    specs: {
+      texture: "Homogeneous fine grind",
+      heatLevel: "Medium",
+      applicationMethod: "Direct griddle/tava vegetable blending with butter base",
+    },
+  },
+  {
+    id: "chaat-masala",
+    title: "Chaat Masala",
+    category: "Traditional Masala",
+    flavorProfile: "Zesty, tart, and punchy black salt (kala namak), amchoor, cumin, and mint notes.",
+    idealFor: ["Snack Processors", "Salad & Bowl Bars", "Street Food Outlets", "Distributors"],
+    image: siteImages.applications.chaat,
+    specs: {
+      texture: "Ultra-fine free-flowing dusting powder",
+      heatLevel: "Mild",
+      applicationMethod: "Direct topical dusting on fruit, savory snacks, and appetizers",
+    },
+  },
+  {
+    id: "peri-peri-blend",
+    title: "Peri-Peri Blend",
+    category: "Modern Seasoning",
+    flavorProfile: "Intense African bird's eye chili heat paired with garlic, oregano, and zesty citrus notes.",
+    idealFor: ["Fried Chicken Chains", "Burger QSRs", "Fries Brands", "Frozen Food Manufacturers"],
+    image: siteImages.applications.periPeri,
+    specs: {
+      texture: "Fine clinging seasoning dust",
+      heatLevel: "High",
+      applicationMethod: "Topical dry shaker or direct tumbler coating",
+    },
+  },
+  {
+    id: "marinade-blend",
+    title: "Dry Marinades",
+    category: "Dry Sauce & Rub",
+    flavorProfile: "Savory, tenderizing aromatic seasoning with paprika, garlic, onion, and herbal accents.",
+    idealFor: ["Poultry Processors", "Butcheries", "Cloud Kitchens", "Barbecue Brands"],
+    image: siteImages.applications.marinade,
+    specs: {
+      texture: "Soluble dry powder with rapid absorption",
+      heatLevel: "Customizable",
+      applicationMethod: "Dry rub or slurry reconstituted with oil/water/curd",
+    },
+  },
+  {
+    id: "rubs-seasoning",
+    title: "Barbecue & Meat Rubs",
+    category: "Dry Sauce & Rub",
+    flavorProfile: "Smoky, caramelized sugar, cracked black peppercorn, mustard seed, and sea salt balance.",
+    idealFor: ["Smokehouse Restaurants", "Gourmet Meat Brands", "Grill Chains", "Food Retailers"],
+    image: siteImages.applications.rubs,
+    specs: {
+      texture: "Coarse gourmet crunch texture",
+      heatLevel: "Medium",
+      applicationMethod: "Surface crusting before smoking, roasting, or grilling",
+    },
+  },
+  {
+    id: "snack-seasoning",
+    title: "Snack & Fries Seasoning",
+    category: "Modern Seasoning",
+    flavorProfile: "Craving-inducing umami, cheese, cream & onion, tomato, or spicy masala sprinkle.",
+    idealFor: ["Extruded Snack Makers", "Potato Chip Processors", "Popcorn Brands", "Fast Food Chains"],
+    image: siteImages.applications.snack,
+    specs: {
+      texture: "Micro-milled adhering dusting powder",
+      heatLevel: "Customizable",
+      applicationMethod: "Electrostatic or continuous drum tumble dusting",
+    },
+  },
+  {
+    id: "custom-blends",
+    title: "Custom Spice Blends",
+    category: "Custom Formulation",
+    flavorProfile: "Bespoke proprietary formulations developed strictly according to client recipe criteria.",
+    idealFor: ["D2C Food Startups", "Private Label Retailers", "Hotel Groups", "Importers"],
+    image: siteImages.applications.custom,
+    specs: {
+      texture: "Customizable to client particle specifications",
+      heatLevel: "Customizable",
+      applicationMethod: "Formulated specifically for customer culinary end-use",
+    },
+  },
+];
