@@ -23,8 +23,6 @@ export const Hero: React.FC = () => {
         {/* Deep Industrial Gradients */}
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950/70" />
-        {/* Subtle decorative gold line */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold-500/60 to-transparent" />
       </div>
 
       <Container className="relative z-10">

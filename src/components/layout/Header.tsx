@@ -27,7 +27,9 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      // Use higher threshold on homepage so subtle scrolls within hero don't cause jitter
+      const threshold = isHomePage ? 80 : 20;
+      if (window.scrollY > threshold) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -37,19 +39,29 @@ export const Header: React.FC = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-subtle border-b border-warm-300 py-3"
+            ? "py-3"
             : isHomePage
-            ? "bg-gradient-to-b from-navy-950/60 via-navy-950/20 to-transparent py-4 sm:py-5"
-            : "bg-white/90 backdrop-blur-md border-b border-warm-200 py-3.5"
+            ? "py-4 sm:py-5"
+            : "py-3.5"
         }`}
       >
+        {/* Background Layer with Backdrop Blur & Border */}
+        <div
+          className={`absolute inset-0 -z-10 transition-all duration-300 pointer-events-none ${
+            isScrolled
+              ? "bg-white/95 backdrop-blur-md shadow-subtle border-b border-warm-300/80"
+              : isHomePage
+              ? "bg-gradient-to-b from-navy-950/70 via-navy-950/20 to-transparent border-b border-transparent"
+              : "bg-white/90 backdrop-blur-md border-b border-warm-200"
+          }`}
+        />
         <Container>
           <div className="flex items-center justify-between">
             {/* Logo */}
